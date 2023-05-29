@@ -11,9 +11,24 @@ function App() {
 const [movies, setMovies] = useState([]);
 const [searchValue, setSearchValue] = useState('');
 
+const getMovieRequest = async (searchValue) => {
+    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=40630798`;
+
+    const responce = await fetch(url);
+    const responseJson = await responce.json();
+
+    if (responseJson.Search) {
+        setMovies(responseJson.Search)
+    }
+};
+
+useEffect(() => {
+    getMovieRequest(searchValue)
+}, [searchValue]);
+
     return (
         <div className="container-fluid mocie-app">
-            
+
             <div className="row d-flax align-items-center mt-4 mb-4">
                 <MovieListHeading 
                     heading="Movies"
@@ -23,6 +38,7 @@ const [searchValue, setSearchValue] = useState('');
                     setSearchValue={setSearchValue}
                 />
             </div>
+
             <div className="row">
                 <MovieList 
                     movies={movies}
