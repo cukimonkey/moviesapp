@@ -3,13 +3,14 @@ body {
 	color: #ffffff;
 }
 
-.movie-app > .row {
+.movie-app .row {
 	overflow-x: auto;
 	flex-wrap: nowrap;
 }
 
 .image-container {
 	position: relative;
+  display: inline-block;
 	transition: transform 0.2s;
 }
 
